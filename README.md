@@ -1,1 +1,1 @@
-# Plotly-Interactive-plots-in-R
+# Plotly: Interactive plots in R
