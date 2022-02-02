@@ -19,7 +19,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 ```{r}
 plotly_library <- c("Interactive plot","Function used: plot_ly()","Does support 3D plot","Plotly is compatible with many languages","Developers describe Plotly as The Web's fastest growing charting libraries","The syntax is very simple","Interactive features ","Large number of chart types offered")
-ggplot2_library <- c("Static plot","Function used: ggplot(). It can be converted into interactive plot by ggplotly() ","Does not support 3D plot","A data visualization package for the statistical programming language R","Breaks up graphs into semantic components such as scales and layers","ggplot2 has a different syntax from the rest of R and when working with complex figures, the syntax can be unwieldy","Elements like margins, points, axis titles, and tickmarks look better when using ggplot2","In terms of speed, ggplot2 tends to run much slower than Plotly")
+ggplot2_library <- c("Static plot","Function used: ggplot(). It can be converted into interactive plot by ggplotly() ","Does not support 3D plot","A data visualization package for the statistical programming language R","Breaks up graphs into semantic components such as scales and layers","When working with complex figures, the syntax can be unwieldy","Elements like margins, points, axis titles, and tickmarks look better when using ggplot2","In terms of speed, ggplot2 tends to run much slower than Plotly")
 
 df <- data.frame(plotly_library, ggplot2_library)
 
