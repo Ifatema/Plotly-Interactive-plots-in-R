@@ -1,0 +1,141 @@
+---
+title: "plotly → for interactive plots in R"
+output: html_notebook
+---
+ ***
+
+![](plotly_logo.png)
+
+### **1. Introduction to Plotly in R**
+#### Plotly in R:
+plotly is an R package for creating interactive web-based graphs via the open source JavaScript graphing library plotly.js. You can view the source, report issues or contribute on [GitHub](https://github.com/plotly/plotly.R).
+By default, the plotly R package runs locally in your web browser or in the RStudio viewer. 
+
+
+### **2. plotly vs. ggplot2** 
+#### What is the difference between plotly & ggplot2 that we've used it in the class?
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r}
+plotly_library <- c("Interactive plot","Function used: plot_ly()","Does support 3D plot","Plotly is compatible with many languages","Developers describe Plotly as The Web's fastest growing charting libraries","The syntax is very simple","Interactive features ","Large number of chart types offered")
+ggplot2_library <- c("Static plot","Function used: ggplot(). It can be converted into interactive plot by ggplotly() ","Does not support 3D plot","A data visualization package for the statistical programming language R","Breaks up graphs into semantic components such as scales and layers","ggplot2 has a different syntax from the rest of R and when working with complex figures, the syntax can be unwieldy","Elements like margins, points, axis titles, and tickmarks look better when using ggplot2","In terms of speed, ggplot2 tends to run much slower than Plotly")
+
+df <- data.frame(plotly_library, ggplot2_library)
+
+knitr::kable(df, "pipe", col.names = c('plotly','ggplot2'), align = c('l','l'), caption = " plotly vs. ggplot2 ", )
+```
+### **3. The Usefulness of Plotly**
+#### What makes Plotly in R useful?
+- The interactively features make the storytelling experience more engaging.
+- Some opinions tell that there aren't yet plotting packages allowing the level of interactive freedom as seen in Plotly.
+- Its interactive capabilities to display values on hover. This capability allows users to see observation names and coordinates. 
+- The ability to export interactive plots as HTML files.
+- Allowing users to focus more on and exploring  particular parts of the plot by hiding label(s), zooming and selecting certain areas.
+
+### **4.The Application of Plotly**
+The dataset used in the following examples is TMDb movies dataset (cleaned from original data on Kaggle) on different properties of more 10,000 movie samples.
+
+**Attribute Information**
+
+- original_title
+- runtime
+- genres
+- vote_average
+- release_year 
+
+```{r}
+df <- read.csv(file = 'cleaned_data.csv')
+df_genres <- read.csv(file = 'tmbd-movies-genres.csv')
+```
+
+**Example 1: scatter plot. (All observations)**
+
+```{r, echo=FALSE, message=FALSE}
+library(plotly)
+fig <- plot_ly(df, x = ~release_year  , y = ~vote_average ,mode = 'markers', color = ~vote_average)
+fig 
+```
+
+
+
+
+***
+
+
+
+**Example 2: scatter plot. (Randomly selected 100 observations)**
+
+```{r, echo=FALSE, message=FALSE}
+library(plotly)
+
+df2 <- df[sample(nrow(df), 100), ]
+fig <- plot_ly(df2, x = ~runtime  , y = ~vote_average , color = ~vote_average)
+fig 
+```
+
+
+
+
+
+
+***
+
+
+
+**Example 3: bar plot. (Randomly selected 100 observations)**
+
+```{r, echo=FALSE, message=FALSE}
+library(plotly)
+df2 <- df[sample(nrow(df), 100), ]
+fig <- plot_ly(df2, x = ~original_title , y = ~vote_average , color = ~vote_average )
+fig 
+```
+
+
+
+
+
+***
+
+
+
+**Example 4: 3D plot. (Randomly selected 500 observations)**
+
+```{r, echo=FALSE, message=FALSE}
+df_genres_2 <- df_genres[sample(nrow(df_genres), 500), ]
+fig <- plot_ly(df_genres_2, x = ~genre, y = ~release_year, z = ~vote_average, color = ~vote_average , mode = 'markers')
+fig
+```
+
+
+
+***
+
+
+
+
+
+
+
+### **5.Take-Home Message** 
+
+At the end, plotly has more comprehensive functions, and may solve the problem which ggplot2 can’t, for example dealing with multiple axes such as 3D plots. However, plotly and ggplot2 both provide great options in data visualizations. When deciding which one is a better match for a project, key features of each library, such as speed, ease of use, the complicity of the data and so, must be considered.
+
+***
+#### **References**
+
+- [Plotly Open Source Graphing Libraries](https://plotly.com/r/)
+- [plotly.R GitHub Repo](https://github.com/plotly/plotly.R)
+- [Exploding biplots with density axes in Plotly.pdf](https://scholar.google.com/scholar?hl=en&as_sdt=0%2C5&q=the+usefulness+of+Plotly+in+r&btnG=#:~:text=Exploding%20biplots%20with%20density%20axes%20in%20Plotly)
+- [Simple manual RMarkdown tables](https://stackoverflow.com/questions/19997242/simple-manual-rmarkdown-tables-that-look-good-in-html-pdf-and-docx)
+- [Step-by-Step Data Visualization Guideline with Plotly in R](https://medium.com/swlh/step-by-step-data-visualization-guideline-with-plotly-in-r-fbd212640de2)
+
+#### **Useful Sources**
+- [Markdown Basics](https://markdown-guide.readthedocs.io/en/latest/basics.html#:~:text=heading-,Horizontal%20rules,also%20place%20spaces%20between%20them.)
+- [Create Interactive Data Visualization with Plotly in R](https://www.themillerlab.io/post/plotly/)
+- [Plotly R graphing](https://jtr13.github.io/cc21/plotly-r-graphing.html)
+
+
+
+
